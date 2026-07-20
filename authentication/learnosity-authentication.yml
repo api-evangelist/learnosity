@@ -1,0 +1,60 @@
+generated: '2026-07-19'
+method: searched
+source: https://help.learnosity.com/hc/en-us/articles/360000754738-Security-and-Authentication
+docs: https://help.learnosity.com/hc/en-us/articles/360000754738-Security-and-Authentication
+summary:
+  types:
+  - custom-hmac-signature
+  api_key_in:
+  - request-body
+  oauth2_flows: []
+  notes: >-
+    Learnosity does not use OAuth 2.0, OpenID Connect, bearer tokens, or HTTP
+    header API keys. Every request to every Learnosity API (client-side JS APIs
+    and the server-side Data API alike) carries a `security` object inside the
+    request body, signed server-side with HMAC-SHA256.
+schemes:
+- name: LearnositySignedRequest
+  type: signature
+  algorithm: HMAC-SHA256
+  location: request body (`security` object)
+  signature_version_prefix: $02$
+  signature_length: 68
+  credentials:
+  - name: consumer_key
+    description: Public account identifier supplied by Learnosity, sent in the security object.
+    secret: false
+  - name: consumer_secret
+    description: >-
+      Private key supplied by Learnosity, used only as the HMAC key. Must never be
+      sent to the browser or across the network, and is never part of the pre-hash string.
+    secret: true
+  signature_components:
+  - consumer_key
+  - domain
+  - timestamp
+  - user_id
+  - JSON-encoded request object
+  pre_hash_rule: >-
+    Concatenate the signature components in order, underscore-separated, with the
+    JSON representation of the request object appended last; HMAC-SHA256 that string
+    using consumer_secret as the key, then prepend `$02$` to the hex digest.
+  domain_binding: >-
+    The `domain` value must match the domain actually serving the page/app; Learnosity
+    checks the request originates from one of the consumer's authorized domains.
+  replay_protection: timestamp in the security object (gmdate('Ymd-Hi') format)
+pii_constraints:
+  user_id:
+    must_not_contain_pii: true
+    recommended_format: UUID
+    max_length: 50
+    docs: https://help.learnosity.com/hc/en-us/articles/360002309578-Student-Privacy-and-Personally-Identifiable-Information-PII-
+transport:
+  https_required: true
+  note: >-
+    Requesting Data API endpoints over HTTP instead of HTTPS returns 403 Forbidden.
+implementation_guidance: >-
+  Learnosity strongly recommends using one of the six official SDKs
+  (Node.js, PHP, Python, ASP.NET, Java, Ruby) rather than hand-rolling the signature;
+  see packages/learnosity-packages.yml. Writing your own signing code is supported
+  only after contacting Learnosity Support.
