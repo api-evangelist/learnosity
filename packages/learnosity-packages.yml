@@ -1,0 +1,73 @@
+generated: '2026-07-19'
+method: searched
+source: https://github.com/Learnosity
+notes: >-
+  Learnosity publishes six official server-side SDKs whose only job is to sign
+  Learnosity API requests (HMAC-SHA256 signature) and to call the Data API.
+  Five are on public package registries; the Java SDK is distributed from GitHub
+  releases only (not on Maven Central as of this probe).
+packages:
+- language: javascript
+  registry: npm
+  name: learnosity-sdk-nodejs
+  version: 0.7.0
+  url: https://www.npmjs.com/package/learnosity-sdk-nodejs
+  repository: https://github.com/Learnosity/learnosity-sdk-nodejs
+  install: npm install learnosity-sdk-nodejs
+  official: true
+- language: python
+  registry: pypi
+  name: learnosity_sdk
+  version: 0.3.13
+  url: https://pypi.org/project/learnosity-sdk/
+  repository: https://github.com/Learnosity/learnosity-sdk-python
+  install: pip install learnosity_sdk
+  official: true
+- language: php
+  registry: packagist
+  name: learnosity/learnosity-sdk-php
+  url: https://packagist.org/packages/learnosity/learnosity-sdk-php
+  repository: https://github.com/Learnosity/learnosity-sdk-php
+  install: composer require learnosity/learnosity-sdk-php
+  official: true
+- language: csharp
+  registry: nuget
+  name: LearnositySDK
+  version: 0.11.0
+  url: https://www.nuget.org/packages/LearnositySDK/
+  repository: https://github.com/Learnosity/learnosity-sdk-asp.net
+  install: dotnet add package LearnositySDK
+  official: true
+- language: ruby
+  registry: rubygems
+  name: learnosity-sdk
+  version: 0.4.0
+  url: https://rubygems.org/gems/learnosity-sdk
+  repository: https://github.com/Learnosity/learnosity-sdk-ruby
+  install: gem install learnosity-sdk
+  official: true
+- language: java
+  registry: github-releases
+  name: learnosity-sdk-java
+  url: https://github.com/Learnosity/learnosity-sdk-java/releases
+  repository: https://github.com/Learnosity/learnosity-sdk-java
+  install: git clone https://github.com/Learnosity/learnosity-sdk-java.git
+  official: true
+  notes: Not published to Maven Central; distributed as a self-contained release ZIP or git clone.
+related_official_libraries:
+- name: learnosity/learnosity-qti
+  registry: packagist
+  url: https://packagist.org/packages/learnosity/learnosity-qti
+  repository: https://github.com/Learnosity/learnosity-qti
+  description: Convert QTI 2.1 assessment Items to and from Learnosity Item and Question JSON.
+  official: true
+- name: learnosity/learnosity-demos
+  registry: packagist
+  url: https://packagist.org/packages/learnosity/learnosity-demos
+  repository: https://github.com/Learnosity/learnosity-demos
+  description: Runnable demo site showing Learnosity API integration patterns.
+  official: true
+license: Apache-2.0
+usage_tracking: >-
+  Learnosity SDKs add SDK version, SDK language, language version, host platform
+  and platform version to the signed request for support and feature planning.

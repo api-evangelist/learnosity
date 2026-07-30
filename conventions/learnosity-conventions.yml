@@ -1,0 +1,121 @@
+generated: '2026-07-19'
+method: searched
+source: https://help.learnosity.com/hc/en-us/categories/16266193425053-Developer-Documentation
+architecture:
+  style: >-
+    Learnosity is explicitly NOT a REST API. The client-side APIs (Items, Assess,
+    Questions, Question Editor, Author, Author Aide, Annotations, Events, Reports,
+    Grading, Rubric Editor, Feedback Aide) are JavaScript libraries loaded from a
+    versioned CDN URL and initialized with a signed options object. The server-side
+    Data API is an RPC-style JSON API where every call is an HTTP POST and the
+    operation is selected by an `action` body parameter.
+  documented_statement: >-
+    "Learnosity is not a REST API. All HTTP calls to the API need to be in the form of a
+    POST operation." - Getting Started With the Data API
+authentication:
+  style: HMAC-SHA256 signed `security` object in the request body
+  artifact: authentication/learnosity-authentication.yml
+  docs: https://help.learnosity.com/hc/en-us/articles/360000754738-Security-and-Authentication
+request_shape:
+  transport: HTTPS only (HTTP returns 403)
+  method: POST (Data API - all endpoints)
+  content_type: application/json
+  envelope:
+    security:
+      - consumer_key
+      - domain
+      - timestamp
+      - signature
+    request: endpoint-specific parameters
+    action: get | set | update
+  url_template: https://data{-region}.learnosity.com/{LTS_VERSION}/{endpoint}
+  example: https://data.learnosity.com/v2026.2.LTS/itembank/items
+response_shape:
+  envelope:
+    meta: status, code, message (and paging fields where applicable)
+    data: endpoint-specific payload
+  success_rule: >-
+    HTTP 200 alone does not mean success - a request can return 200 with
+    `meta.status: false` and a numeric `meta.code`. Always check `meta.status`.
+  artifact: errors/learnosity-error-codes.yml
+idempotency:
+  supported: false
+  header: null
+  notes: >-
+    Learnosity publishes no idempotency-key mechanism. Write safety is instead
+    expressed through the `action` parameter (get/set/update) and through
+    uniqueness constraints enforced server-side (error 30000 "Duplicate entry in
+    database", error 30003 "Items in Activities need to be unique"), plus
+    client-generated identifiers - session_id and user_id are UUIDs minted by the
+    integrator, which makes session creation naturally de-duplicable by the caller.
+pagination:
+  style: cursor
+  request_params:
+  - next
+  - limit
+  - sort
+  - mintime
+  - maxtime
+  response_fields:
+  - meta.next
+  cursor_param: next
+  notes: >-
+    Data API list endpoints accept `limit` (the sessions/responses endpoint defaults to
+    50 and caps at 50), `sort`, and time-window filters (`mintime`/`maxtime`). Paging is
+    a continuation token named `next`, echoed back on the following request. Semantics
+    differ by endpoint: the sessions endpoints return `next` whenever the current result
+    set is non-empty - even if no further records exist - so the same token can be reused
+    for long-polling to detect newly created sessions; Item bank endpoints return `next`
+    only when more results exist beyond the current page. Very large responses are
+    rejected with error 20027 ("Response size too large") rather than truncated, so
+    callers must page.
+versioning:
+  style: LTS train, pinned in the URL
+  artifact: lifecycle/learnosity-lifecycle.yml
+  client_side: script tag query string, e.g. https://items.learnosity.com/?v2026.2.LTS
+  server_side: URI path segment, e.g. https://data.learnosity.com/v2026.2.LTS/itembank/items
+  aliases:
+  - latest-lts
+  - developer
+  production_guidance: Pin a specific LTS version in production; never ship `developer` or `latest-lts`.
+regionalization:
+  style: regional hostname suffix
+  default_region: us-east-1 (Virginia) - unsuffixed or -va
+  regions:
+  - {code: va, name: US East - Virginia, role: default}
+  - {code: ie, name: EU West - Dublin}
+  - {code: au, name: Australia - Sydney}
+  - {code: ca, name: US West - California, role: load testing}
+  - {code: or, name: US West - Oregon, role: authoring writes only}
+  rule: >-
+    Reads should use the region the consumer is configured in, not the end user's region.
+    All Item bank content creation (writes) should go through the Oregon (data-or) endpoint.
+  docs: https://help.learnosity.com/hc/en-us/articles/360000754798-What-Regions-and-Endpoints-Should-I-Use
+rate_limiting:
+  signaled_via: HTTP 429 with meta.code 42000
+  headers: none published
+  artifact: rate-limits/learnosity-rate-limits.yml
+identifiers:
+  user_id:
+    format: caller-generated anonymized string, UUID recommended
+    max_length: 50
+    pii_prohibited: true
+  session_id:
+    format: caller-generated UUID identifying one assessment attempt
+    purpose: save/resume, data retrieval and reporting
+  activity_id:
+    purpose: analytics grouping across learners taking the same assessment
+  org_id:
+    purpose: scopes a consumer to an organisation; mismatch yields error 40003
+privacy:
+  pii_rule: >-
+    Learnosity instructs integrators never to send learner names or other personally
+    identifiable information in API requests; identifiers must be anonymized and
+    resolved against the integrator's own database.
+  docs: https://help.learnosity.com/hc/en-us/articles/360002309578-Student-Privacy-and-Personally-Identifiable-Information-PII-
+cross_links:
+  authentication: authentication/learnosity-authentication.yml
+  errors: errors/learnosity-error-codes.yml
+  lifecycle: lifecycle/learnosity-lifecycle.yml
+  rate_limits: rate-limits/learnosity-rate-limits.yml
+  sandbox: sandbox/learnosity-sandbox.yml

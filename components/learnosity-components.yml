@@ -1,0 +1,108 @@
+generated: '2026-07-19'
+method: searched
+source: https://help.learnosity.com/hc/en-us/categories/16266193425053-Developer-Documentation
+summary: >-
+  Most of the Learnosity platform is delivered as embeddable client-side components, not
+  as server-side REST resources. Each "API" below is a JavaScript library loaded from a
+  versioned Learnosity CDN URL, initialized with a server-signed options object, and
+  rendered into a DOM element in the host application. This is the primary integration
+  surface; the Data API is the server-side complement.
+loader_pattern:
+  script_tag: <script src="https://items.learnosity.com/?v2026.2.LTS"></script>
+  global_object: LearnosityItems (one global per component family)
+  init_call: LearnosityItems.init(signedInitOptions)
+  mount_element: a div in the host page, e.g. <div id="learnosity_assess"></div>
+  version_pinning: Pin a specific LTS version in production. See lifecycle/learnosity-lifecycle.yml.
+families:
+- family: Assessment delivery
+  components:
+  - name: Items API
+    global: LearnosityItems
+    host: https://items.learnosity.com
+    description: >-
+      Renders and runs an assessment (the assessment player) from an Activity in the Item
+      bank, handling navigation, save/resume, response storage and submission.
+    docs: https://help.learnosity.com/hc/en-us/categories/16534045857949-Items-API-Initialization-Options
+  - name: Assess API
+    global: LearnosityAssess
+    host: https://assess.learnosity.com
+    description: >-
+      The assessment player layer used by Items API in `assess` rendering mode; can be
+      driven directly for bespoke player experiences.
+    docs: https://help.learnosity.com/hc/en-us/categories/16534105833373-Assess-API-Initialization-Options
+  - name: Questions API
+    global: LearnosityApp
+    host: https://questions.learnosity.com
+    description: >-
+      Renders individual Questions and Features inline, without the surrounding
+      assessment player - the lowest-level rendering component.
+    docs: https://help.learnosity.com/hc/en-us/categories/16534061467933-Questions-API-Initialization-Options
+- family: Authoring
+  components:
+  - name: Author API
+    global: LearnosityAuthor
+    host: https://authorapi.learnosity.com
+    description: >-
+      Full authoring environment - browse, create and edit Items, Questions, Features and
+      Activities in the Item bank.
+    docs: https://help.learnosity.com/hc/en-us/categories/16534074620189-Author-API-Initialization-Options
+  - name: Question Editor API
+    global: LearnosityQuestionEditor
+    host: https://questioneditor.learnosity.com
+    description: >-
+      The single-Question editing widget, embeddable on its own inside a custom authoring UI.
+    docs: https://help.learnosity.com/hc/en-us/categories/16534061255965-Question-Editor-API-Initialization-Options
+  - name: Rubric Editor API
+    global: LearnosityRubricEditor
+    description: Embeddable editor for scoring rubrics.
+    docs: https://help.learnosity.com/hc/en-us/sections/29580279641501-Rubric-Editor-API
+- family: AI-enriched
+  components:
+  - name: Author Aide API
+    global: LearnosityAuthorAide
+    description: AI-assisted authoring component for generating and improving assessment content.
+    docs: https://help.learnosity.com/hc/en-us/categories/19776607605789-Author-Aide-API-Initialization-Options
+    getting_started: https://help.learnosity.com/hc/en-us/articles/19751636225181-Getting-started-with-the-Author-Aide-API
+  - name: Feedback Aide
+    global: LearnosityFeedbackAide
+    description: >-
+      Embeddable AI scoring and feedback surface for open-response work, exposed through
+      feedbackSession / feedbackSessionUI configuration.
+    docs: https://help.learnosity.com/hc/en-us/categories/22502911016989-Feedback-Aide
+- family: Grading and review
+  components:
+  - name: Grading API
+    global: LearnosityGrading
+    description: Embeddable manual grading UI for scoring learner responses.
+    docs: https://help.learnosity.com/hc/en-us/categories/19985132524957-Grading-API-Initialization-Options
+    getting_started: https://help.learnosity.com/hc/en-us/articles/25283285367453-Getting-started-with-the-Grading-API
+  - name: Annotations API
+    description: >-
+      Adds annotation and markup capability (highlighting, notes) over assessment content.
+    docs: https://help.learnosity.com/hc/en-us/categories/16534076465693-Annotations-API-Initialization-Options
+- family: Reporting and events
+  components:
+  - name: Reports API
+    global: LearnosityReports
+    host: https://reports.learnosity.com
+    description: >-
+      Renders prebuilt learner and aggregate reports (individual reports, live progress,
+      learner-centric reports) into the host page.
+    docs: https://help.learnosity.com/hc/en-us/categories/16534075019677-Reports-API-Initialization-Options
+  - name: Events API
+    global: LearnosityEvents
+    host: https://events.learnosity.com
+    description: >-
+      Real-time client-side event channel used for live progress monitoring across
+      in-flight assessment sessions.
+    docs: https://help.learnosity.com/hc/en-us/categories/16534106856221-Events-API-Initialization-Options
+extensibility:
+- name: Custom Question types / custom Features
+  repository: https://github.com/Learnosity/custom-questions-skeleton
+  description: Skeleton project for building bespoke Question and Feature types on the Learnosity APIs.
+- name: Learnosity API CSS
+  repository: https://github.com/Learnosity/learnosity-apis-css
+  description: The stylesheets for the Learnosity client-side APIs, published for theming.
+- name: i18n language bundles
+  repository: https://github.com/Learnosity/learnosity-i18n
+  description: Localization bundles for the Learnosity client-side APIs.

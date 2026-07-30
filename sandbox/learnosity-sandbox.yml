@@ -1,0 +1,74 @@
+generated: '2026-07-19'
+method: searched
+source: https://help.learnosity.com/hc/en-us/articles/360000758637-Getting-Started-With-the-Data-API
+summary: >-
+  Learnosity does not run a separate sandbox host. Instead it publishes an open
+  "demos" account - a real consumer key/secret pair committed to every official SDK's
+  quickstart config - which grants access to a demonstration Item bank and a fixed set
+  of demo learner sessions on the production endpoints. There is no test/live key
+  prefix; test mode is simply "you are signing with the demos consumer key".
+test_vs_live:
+  separation: separate consumer key per account (no key prefix convention)
+  demo_account_name: Learnosity public demos account
+  live_account: Learnosity provisions your own consumer key and secret; your Item bank
+    and assessment data are tied to that key.
+  key_prefixes: none
+credentials:
+  consumer_key: yis0TYCu7U9V4o7M
+  consumer_secret_published_at:
+  - https://github.com/Learnosity/learnosity-sdk-php/blob/master/docs/quickstart/config.php
+  - https://github.com/Learnosity/learnosity-sdk-python/blob/master/docs/quickstart/config.py
+  note: >-
+    The demos consumer secret is published verbatim by Learnosity in each SDK's quickstart
+    config file; it is deliberately public and grants access only to demonstration data.
+    It is referenced here by location rather than copied, to keep this repo free of
+    credential-shaped strings.
+  domain_binding: >-
+    The `domain` in the signed security object must match the host actually serving the
+    page. Use `localhost` when running the quickstart examples locally.
+magic_test_values:
+  learners:
+  - student_0001
+  - student_0002
+  - student_0003
+  - student_0004
+  note: >-
+    Four demo learners each completed a ten-Question assessment (mixed Science and
+    English) in the demo Item bank.
+  example_session_id: ef4f80b8-e281-41f4-9efd-349b7eb9dd37
+  example_activity_template_id: quickstart_examples_activity_template_001
+  example_activity_id: quickstart_examples_activity_001
+  example_items:
+  - ccore_video_260_classification
+  - ccore_parcc_tecr_grade3
+  time_window_hint: >-
+    Demo session data predates 2020; set mintime to 2011-01-01 (or 2020-01-01 in the
+    code sample) when querying sessions/responses for the demo learners.
+tooling:
+- name: Data API demo console
+  url: https://demos.learnosity.com/
+  description: >-
+    Interactive form for every Data API endpoint - pick an endpoint, fill the request
+    form, submit, and inspect both the raw JSON request that was signed and the response.
+- name: SDK quickstart servers
+  description: >-
+    Each SDK ships a runnable quickstart web server exposing one page per client-side API
+    (Author, Questions, Items, Reports, Question Editor, Data) against the demos account.
+  example_command: learnosity-sdk-assessment-quickstart
+  routes:
+  - /authorapi
+  - /questionsapi
+  - /itemsapi
+  - /reportsapi
+  - /questioneditorapi
+  - /dataapi
+- name: Load-testing region
+  url: https://items-ca.learnosity.com/
+  description: >-
+    The US West - California region is documented as the load-testing environment.
+  docs: https://help.learnosity.com/hc/en-us/articles/360000754798-What-Regions-and-Endpoints-Should-I-Use
+- name: Demos source code
+  url: https://github.com/Learnosity/learnosity-demos
+  description: Full source of the demo site, forkable as an integration starting point.
+time_simulation: none published
+fixtures_and_triggers: none published

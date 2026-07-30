@@ -1,0 +1,92 @@
+generated: '2026-07-19'
+method: searched
+source: https://help.learnosity.com/hc/en-us/articles/360001268538-Release-Cadence-and-Version-Lifecycle
+versioning:
+  scheme: dated-lts-train
+  naming_convention: vYYYY.X.LTS
+  current: v2026.2.LTS
+  placement:
+  - style: query string on the client-side API script tag
+    example: https://items.learnosity.com/?v2026.2.LTS
+  - style: URI path segment on the Data API
+    example: https://data.learnosity.com/v2026.2.LTS/itembank/items
+  moving_aliases:
+  - name: latest-lts
+    description: Tracks the most recent LTS release. Development and testing only.
+  - name: developer
+    description: Rolling non-LTS release shipped every two weeks. Development and testing only.
+  docs: https://help.learnosity.com/hc/en-us/articles/360001268538-Release-Cadence-and-Version-Lifecycle
+  release_dates: https://help.learnosity.com/hc/en-us/articles/10501902647581-List-of-LTS-Version-Release-Dates
+release_cadence:
+  developer: every 2 weeks
+  lts: every 4 months (February, June, October)
+  backwards_compatibility: >-
+    Learnosity states it maintains full backwards compatibility with every new release,
+    and recommends pinning production systems to a specific LTS version.
+deprecation:
+  policy_url: https://help.learnosity.com/hc/en-us/articles/360001268538-Release-Cadence-and-Version-Lifecycle
+  sunset_header: false
+  published_schedule: true
+  lts_support_window:
+    general_fixes_months: 16
+    critical_fixes_months: 24
+    end_of_life_months: 24
+    sunset_and_removal_months: 30
+  description: >-
+    Each LTS version receives general security, performance and bug fixes for 16 months,
+    then critical-only fixes to its 24-month end-of-life date, and is removed at 30 months.
+    Deprecated Data API endpoints return HTTP 410 with error code 42001.
+  deprecated_endpoint_signal:
+    http_status: 410
+    error_code: 42001
+    message: The endpoint is no longer available
+lts_versions:
+- version: v2026.2.LTS
+  released: '2026-06-10'
+  critical_patches_only_from: 2027-10
+  end_of_life: 2028-06
+- version: v2026.1.LTS
+  released: '2026-03-04'
+  critical_patches_only_from: 2027-07
+  end_of_life: 2028-03
+- version: v2025.3.LTS
+  released: '2025-11-19'
+  critical_patches_only_from: 2027-03
+  end_of_life: 2027-11
+- version: v2025.2.LTS
+  released: '2025-06-16'
+  critical_patches_only_from: 2026-10
+  end_of_life: 2027-06
+- version: v2025.1.LTS
+  released: '2025-03-05'
+  critical_patches_only_from: 2026-07
+  end_of_life: 2027-03
+- version: v2024.3.LTS
+  released: '2024-11-20'
+  critical_patches_only_from: 2026-03
+  end_of_life: 2026-11
+- version: v2024.2.LTS
+  released: '2024-06-26'
+  critical_patches_only_from: 2025-10
+  end_of_life: 2026-06
+- version: v2024.1.LTS
+  released: '2024-03-06'
+  critical_patches_only_from: 2025-07
+  end_of_life: 2026-03
+status_page: https://status.learnosity.com
+status_page_details:
+  platform: Atlassian Statuspage
+  api: https://status.learnosity.com/api/v2/summary.json
+  notification_channels:
+  - email
+  - sms
+  - webhook
+  component_model: >-
+    Components are grouped by region (AMER, APAC, EMEA, GLOBAL) and by service family
+    (Authoring, Assessment, Analytics, Data Centric, Administration).
+  docs: https://help.learnosity.com/hc/en-us/articles/360000757677-Status-Monitoring-With-Learnosity
+sla:
+  note: >-
+    Learnosity documents that LTS SLAs apply from the promotional release date of each
+    LTS version; the SLA terms themselves are contractual and not published publicly.
+deprecated_operations: []

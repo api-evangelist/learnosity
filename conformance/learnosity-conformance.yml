@@ -1,0 +1,78 @@
+generated: '2026-07-19'
+method: searched
+source: https://help.learnosity.com/hc/en-us/categories/16266193425053-Developer-Documentation
+standards:
+- id: rest
+  conforms: false
+  evidence: >-
+    Learnosity documents explicitly that "Learnosity is not a REST API" - all Data API
+    calls are POST with an `action` body parameter.
+- id: oauth2
+  conforms: false
+  evidence: No OAuth 2.0 surface; authentication is an HMAC-SHA256 signed security object.
+- id: oidc
+  conforms: false
+  evidence: No /.well-known/openid-configuration (404) and no OIDC documentation.
+- id: rfc9457-problem-details
+  conforms: false
+  evidence: >-
+    Errors use a proprietary `meta` packet with a numeric `code`, not application/problem+json.
+- id: hmac-request-signing
+  conforms: true
+  evidence: >-
+    HMAC-SHA256 over an ordered pre-hash string with a `$02$` signature version prefix -
+    see authentication/learnosity-authentication.yml.
+- id: rfc8594-sunset-header
+  conforms: false
+  evidence: >-
+    A dated deprecation and end-of-life schedule is published per LTS version, but no
+    Sunset/Deprecation HTTP headers are documented; retired endpoints return 410 / code 42001.
+- id: cursor-pagination
+  conforms: true
+  evidence: Data API list endpoints page with a `next` continuation token and a `limit` parameter.
+- id: idempotency-key
+  conforms: false
+  evidence: No idempotency-key header or parameter is documented.
+- id: qti-2.1
+  conforms: true
+  evidence: >-
+    Learnosity publishes an official open-source converter (learnosity-qti) that converts
+    QTI 2.1 assessment Items to and from Learnosity Item and Question JSON.
+  source: https://github.com/Learnosity/learnosity-qti
+- id: xapi
+  conforms: true
+  evidence: >-
+    Items API emits xAPI statement payloads (release logs reference the xAPI `progressed`
+    payload for adaptive assessments).
+- id: wcag
+  conforms: true
+  evidence: >-
+    Learnosity publishes a dedicated accessibility programme covering WCAG conformance and
+    screen-reader support across Question types.
+  source: https://learnosity.com/platform/accessibility/
+- id: iso-27001
+  conforms: true
+  evidence: ISO 27001 certified - see security/learnosity-trust-center.yml.
+- id: csa-star
+  conforms: true
+  evidence: Listed in the CSA Security Trust Assurance and Risk registry.
+- id: gdpr
+  conforms: true
+  evidence: >-
+    Published data-protection protocols and Appendix 1 supplementary measures for personal
+    data subject to GDPR/UK GDPR; Learnosity is an Irish company established in the EU.
+- id: eu-us-data-privacy-framework
+  conforms: true
+  evidence: >-
+    Self-certified under the EU-U.S. Data Privacy Framework, including the UK Extension and
+    the Swiss-U.S. DPF.
+- id: openapi
+  conforms: false
+  evidence: >-
+    No OpenAPI/Swagger description is published for the Data API or any client-side API;
+    the reference is prose in the help center.
+- id: asyncapi
+  conforms: false
+  evidence: >-
+    The Events API is a client-side realtime channel; no AsyncAPI document and no
+    server-to-server webhook catalog is published.

@@ -1,0 +1,84 @@
+generated: '2026-07-19'
+method: searched
+source: https://help.learnosity.com/hc/en-us/articles/360000758677-Rate-Limiting-With-the-Data-API
+docs: https://help.learnosity.com/hc/en-us/articles/360000758677-Rate-Limiting-With-the-Data-API
+api: Learnosity Data API
+scope: per consumer key, per individual endpoint
+window: 5 seconds
+window_seconds: 5
+exceeded_status: 429
+exceeded_body:
+  meta:
+    status: false
+    code: 42000
+    message: Too many requests
+retry_guidance: >-
+  On a 429, wait for the full 5-second window to elapse before retrying, and account
+  for concurrent processes sharing the same consumer key. Limits are applied per
+  endpoint, so exhausting one endpoint's quota does not affect any other endpoint.
+headers_published: false
+rate_limits:
+- action: GET
+  endpoint: /itembank/*
+  limit_count: 1000
+  window: 5s
+- action: GET
+  endpoint: /itembank/conversion/*
+  limit_count: 50
+  window: 5s
+- action: SET
+  endpoint: /itembank/*
+  limit_count: 50
+  window: 5s
+- action: UPDATE
+  endpoint: /itembank/*
+  limit_count: 50
+  window: 5s
+- action: GET
+  endpoint: /jobs/*
+  limit_count: 1000
+  window: 5s
+- action: SET
+  endpoint: /jobs/*
+  limit_count: 50
+  window: 5s
+- action: UPDATE
+  endpoint: /jobs/*
+  limit_count: 50
+  window: 5s
+- action: GET
+  endpoint: /scoring
+  limit_count: 2000
+  window: 5s
+- action: GET
+  endpoint: /sessions/*
+  limit_count: 1000
+  window: 5s
+- action: SET
+  endpoint: /sessions
+  limit_count: 50
+  window: 5s
+- action: UPDATE
+  endpoint: /sessions/responses/scores
+  limit_count: 1000
+  window: 5s
+- action: UPDATE
+  endpoint: /sessions/item
+  limit_count: 1
+  window: 5s
+- action: GET
+  endpoint: /reports/*
+  limit_count: 1000
+  window: 5s
+- action: SET
+  endpoint: /reports/*
+  limit_count: 50
+  window: 5s
+- action: SET
+  endpoint: /consumers
+  limit_count: 50
+  window: 5s
+notes: >-
+  A '*' in the endpoint path means the quota is applied separately to each endpoint
+  beneath that path, except where a quota for a specific child path is listed.
+  Customers whose use case exceeds these quotas are directed to Learnosity support.

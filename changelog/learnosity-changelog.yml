@@ -1,0 +1,73 @@
+generated: '2026-07-19'
+method: searched
+source: https://help.learnosity.com/hc/en-us/articles/19629981258653-Developer-Release-Logs
+scheme: dated-lts-train
+current_version: v2026.2.LTS
+cadence:
+  developer: biweekly
+  lts: every 4 months (February, June, October)
+changelogs:
+- name: Developer Release Logs (rolling, all APIs)
+  url: https://help.learnosity.com/hc/en-us/articles/19629981258653-Developer-Release-Logs
+- name: Items API Release Logs
+  url: https://help.learnosity.com/hc/en-us/articles/17586388376477-Items-API-Release-Logs
+- name: Questions API Release Logs
+  url: https://help.learnosity.com/hc/en-us/articles/17589600437405-Questions-API-Release-Logs
+- name: Reports API Release Logs
+  url: https://help.learnosity.com/hc/en-us/articles/17586417805725-Reports-API-Release-Logs
+- name: Events API Release Logs
+  url: https://help.learnosity.com/hc/en-us/articles/17586388345245-Events-API-Release-Logs
+- name: Console Site Release Logs
+  url: https://help.learnosity.com/hc/en-us/articles/17586388224541-Console-Site-Release-Logs
+- name: Releases & Versioning category
+  url: https://help.learnosity.com/hc/en-us/categories/360000105398-Releases-Versioning
+entries:
+- date: '2026-07-15'
+  version: developer
+  breaking: false
+  additions:
+  - api: Data API
+    change: Added PUT sessions/{session_id}/adjustments to update adjustment points for sessions and responses.
+  - api: Data API
+    change: >-
+      Added GET sessions/responses/scores/grading and PUT sessions/responses/scores/grading
+      to support programmatic retrieval and management of manual grading scores with
+      grader_id associations.
+  - api: Data API
+    change: >-
+      Added adjustment_points and score_after_adjustment fields to session and response data
+      returned by POST sessions/responses and POST sessions/responses/score.
+  - api: Questions API
+    change: Added Try again support for the clozetext Question type when using dynamic content.
+  - api: Questions API
+    change: >-
+      Added screen reader support for rich content in drag-and-drop responses for the
+      orderlist Question type.
+  - api: Questions API
+    change: >-
+      Added support for the dynamic content try again feature in the custom Question type.
+  - api: Question Editor API
+    change: >-
+      Added the isSimplified, isExpanded and isFactored scoring methods to the
+      clozeformulaV2, imageclozeformulaV2 and multistepmath Question types.
+  - api: Question Editor API
+    change: Added helper text for Feedback Aide scoring options.
+  - api: Assess API
+    change: >-
+      Added a blocking modal preventing navigation, save or submit of an Activity when a
+      Question within an Item contains an invalid response.
+  highlights: >-
+    Data API gains score-adjustment and manual-grading endpoints; accessibility and
+    dynamic-content improvements across Questions, Question Editor and Assess.
+- version: v2026.2.LTS
+  date: '2026-06-10'
+  breaking: false
+  highlights: Current Long Term Support release; supported to June 2028.
+- version: v2026.1.LTS
+  date: '2026-03-04'
+  breaking: false
+  highlights: Long Term Support release; supported to March 2028.
+notes: >-
+  Recent window only. The Developer Release Log is the rolling source of truth and is
+  updated roughly every two weeks; per-API release logs carry the same entries scoped
+  to a single API.

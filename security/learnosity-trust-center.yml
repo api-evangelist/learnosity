@@ -1,0 +1,57 @@
+generated: '2026-07-19'
+method: searched
+probe: true
+url: https://learnosity.com/platform/security/
+pages:
+- name: Security
+  url: https://learnosity.com/platform/security/
+- name: Privacy
+  url: https://learnosity.com/platform/privacy/
+- name: Privacy whitepaper
+  url: https://learnosity.com/platform/privacy/privacy-whitepaper/
+- name: Data protection protocols (technical and organizational measures)
+  url: https://learnosity.com/data-protection-protocols/
+- name: Product security policy
+  url: https://learnosity.com/product-security-policy/
+- name: Accessibility
+  url: https://learnosity.com/platform/accessibility/
+- name: Scalability
+  url: https://learnosity.com/platform/scalability/
+- name: Business resilience and disaster recovery
+  url: https://learnosity.com/business-resilience-disaster-recovery/
+- name: Privacy policy
+  url: https://learnosity.com/privacy-policy/
+- name: Cookie policy
+  url: https://learnosity.com/learnosity-cookie-policy/
+certifications:
+- name: ISO 27001
+  status: certified
+  evidence: >-
+    "ISO 27001 certified for security best practices and controls" - learnosity.com/platform/security/
+- name: CSA STAR
+  status: listed
+  evidence: >-
+    "listed in the Security Trust Assurance and Risk (STAR) registry" - learnosity.com/platform/security/
+- name: EU-U.S. Data Privacy Framework (incl. UK Extension and Swiss-U.S. DPF)
+  status: self-certified participant
+  evidence: learnosity.com/platform/security/
+regulatory_alignment:
+- GDPR / UK GDPR
+- Student PII minimization (no learner names or PII in API requests)
+practices:
+- Regular third-party penetration testing
+- Cloud hosting on ISO 27001 certified and SOC 2 accredited third-party data centers
+- Internal security workshops and documented security policies
+notes: >-
+  Learnosity does not operate a hosted trust-center portal (no trust.learnosity.com); the
+  compliance posture is published across the platform pages listed above. The SOC 2
+  reference on the data-protection page describes Learnosity's hosting providers, not a
+  Learnosity SOC 2 report, and is recorded as such. FedRAMP applies to Questionmark
+  Government - a sibling product line - not to the Learnosity assessment APIs.
+evidence:
+- source: https://learnosity.com/platform/security/
+  keywords: [iso 27001, csa star, data privacy framework, penetration testing]
+- source: https://learnosity.com/data-protection-protocols/
+  keywords: [iso 27001, soc 2, gdpr, penetration tests]
+- source: https://learnosity.com/platform/privacy/
+  keywords: [iso 27001, gdpr]

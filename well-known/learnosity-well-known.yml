@@ -1,0 +1,39 @@
+generated: '2026-07-19'
+method: searched
+source: live HTTP probe of the Learnosity website and Data API hosts
+result: none
+notes: >-
+  No /.well-known/ discovery documents are published on either the marketing host
+  or the Data API host. Recorded as verified absence, not as a gap to be filled.
+  Learnosity does publish a first-party /llms.txt at the root of learnosity.com
+  (captured verbatim in llms/learnosity-llms.txt).
+hosts:
+- host: https://learnosity.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+- host: https://data.learnosity.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+other_root_documents:
+- path: /llms.txt
+  host: https://learnosity.com
+  status: 200
+  file: ../llms/learnosity-llms.txt

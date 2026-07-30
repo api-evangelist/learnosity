@@ -1,0 +1,28 @@
+{
+  "repo": "learnosity",
+  "feeds": [
+    {
+      "source": "https://help.learnosity.com/hc/en-us",
+      "feed_url": "https://help.learnosity.com/hc/en-us",
+      "title": "",
+      "saved": 0,
+      "method": "none"
+    },
+    {
+      "source": "https://learnosity.com/edtech-blog/feed/",
+      "feed_url": "https://learnosity.com/edtech-blog/feed/",
+      "title": "",
+      "saved": 0,
+      "method": "feed"
+    },
+    {
+      "source": "https://learnosity.com/edtech-blog/",
+      "feed_url": "https://learnosity.com/edtech-blog/feed/",
+      "title": "",
+      "saved": 0,
+      "method": "discovered"
+    }
+  ],
+  "post_count": 0,
+  "fetched": "2026-07-25T15:00:33Z"
+}

@@ -1,0 +1,248 @@
+generated: '2026-07-19'
+method: searched
+source: https://help.learnosity.com/hc/en-us/articles/16458089770653-troubleshooting-Data-API
+docs: https://help.learnosity.com/hc/en-us/articles/16458089770653-troubleshooting-Data-API
+api: Learnosity Data API
+format: learnosity-meta
+rfc9457: false
+envelope:
+  description: >-
+    Every Data API response carries a `meta` packet. On failure `meta.status` is
+    false and `meta.code` carries the numeric Learnosity application error code,
+    with a human message in `meta.message`. A 200 OK response can still represent a
+    validation failure, so callers must inspect `meta.status`, not just the HTTP status.
+  example:
+    meta:
+      status: false
+      code: 42000
+      message: Too many requests
+  fields:
+  - meta.status
+  - meta.code
+  - meta.message
+http_status_codes:
+- status: 200
+  title: OK
+  description: A successful request.
+- status: 400
+  title: Bad Request
+  description: Most likely due to missing or erroneous request parameters.
+- status: 403
+  title: Forbidden
+  description: >-
+    Typically for incorrect authentication details. Could also be returned for
+    attempting to access endpoints over HTTP instead of HTTPS.
+- status: 405
+  title: Method Not Allowed
+  description: Invalid request method.
+- status: 409
+  title: Conflict
+  description: Request could not be completed due to a conflict with current state of the resource.
+- status: 410
+  title: Gone
+  description: The URL requested is no longer available.
+- status: 429
+  title: Too Many Requests
+  description: Too many requests has been received. See rate-limits/learnosity-rate-limits.yml.
+- status: 500
+  title: Internal Server Error
+  description: A server error occurred while processing the request.
+error_classes:
+- prefix: '1xxxx'
+  meaning: Internal server errors
+- prefix: '2xxxx'
+  meaning: Request parameter, schema validation and resource-lookup errors
+- prefix: '3xxxx'
+  meaning: Database constraint errors (duplicates, missing foreign keys)
+- prefix: '4xxxx'
+  meaning: Authentication, authorization, signing, rate limiting and versioning errors
+- prefix: '5xxxx'
+  meaning: Reporting dataset errors
+errors:
+- code: 10000
+  status: 500
+  title: An error has occurred
+  remediation: An internal error has occurred. It has been logged and Learnosity is probably already looking into it.
+- code: 20000
+  status: 400
+  title: Missing mandatory parameter(s)
+  remediation: Specify the required parameters.
+- code: 20001
+  status: 400
+  title: Invalid parameter length
+  remediation: Ensure your request parameters match the expected length.
+- code: 20002
+  status: 400
+  title: Too many parameters passed
+  remediation: >-
+    Ensure your request parameters match the expected length. If specifying a search
+    filter with many values, batch the values into separate requests and union the results.
+- code: 20003
+  status: 400
+  title: Invalid parameter type
+  remediation: Ensure your request parameters match the expected type.
+- code: 20004
+  status: 400
+  title: Invalid parameter value
+  remediation: Ensure your request parameters match one of the supported values.
+- code: 20009
+  status: 400
+  title: JSON failed to validate against schema
+  remediation: Check the response message for details on the specific validation errors in the request.
+- code: 20010
+  status: 400
+  title: XML failed to validate against schema
+  remediation: Check the response message for details on the specific validation errors in the request.
+- code: 20011
+  status: 409
+  title: Conflict
+  remediation: Check the error message for details on why the operation could not be completed.
+- code: 20012
+  status: 404
+  title: Not Found
+  remediation: Check the endpoint URL.
+- code: 20013
+  status: 400
+  title: Item not found in database
+  remediation: >-
+    Check the response message for which Items could not be found. Verify those Items
+    exist in the desired Item bank and retry.
+- code: 20014
+  status: 400
+  title: Tag not found
+  remediation: Verify the specified Tag exists in the desired Item bank.
+- code: 20015
+  status: 400
+  title: Tag type not found
+  remediation: Verify the specified Tag type exists in the desired Item bank.
+- code: 20016
+  status: 400
+  title: Session not found
+  remediation: Verify a Session exists with the specified session_id.
+- code: 20017
+  status: 400
+  title: Dynamic content data missing or incomplete
+  remediation: Check the format of dynamic content data provided in the request.
+- code: 20018
+  status: 500
+  title: An adaptive assessment error has occurred
+  remediation: An internal error has occurred. It has been logged and Learnosity is probably already looking into it.
+- code: 20027
+  status: 400
+  title: Response size too large
+  remediation: >-
+    The generated response is too large - reduce the amount of data requested.
+    See "Managing Memory in Data API Calls".
+- code: 30000
+  status: 400
+  title: Duplicate entry in database
+  remediation: Ensure the identifiers in your request are unique.
+- code: 30001
+  status: 400
+  title: Database value missing (typically foreign key constraint)
+  remediation: >-
+    Check the response message for which records could not be found. Verify those
+    records exist in the desired Item bank and retry.
+- code: 30003
+  status: 400
+  title: Items in Activities need to be unique
+  remediation: Verify the specified Items are unique and retry the request.
+- code: 40000
+  status: 400
+  title: Access denied
+  remediation: Verify your consumer credentials and endpoint URL are correct.
+- code: 40001
+  status: 405
+  title: Method not allowed
+  remediation: Verify your consumer credentials and endpoint URL are correct.
+- code: 40002
+  status: 403
+  title: Consumer is not associated with an organisation
+  remediation: An internal error has occurred. It has been logged and Learnosity is probably already looking into it.
+- code: 40003
+  status: 403
+  title: Consumer does not have sufficient access rights to current organisation
+  remediation: >-
+    Typically an attempted write operation with read-only access. Verify the consumer
+    credentials and org_id in your request.
+- code: 41000
+  status: 400
+  title: Missing security parameters
+  remediation: Verify you have specified your consumer credentials according to the Data API security pattern.
+- code: 41001
+  status: 403
+  title: Invalid parameter length
+  remediation: Verify the provided security signature is a valid hash.
+- code: 41002
+  status: 403
+  title: Not a valid consumer
+  remediation: Verify the provided consumer key is correct.
+- code: 41003
+  status: 403
+  title: Signatures do not match
+  remediation: Verify the provided security signature was generated correctly.
+- code: 41004
+  status: 403
+  title: Timestamp out of valid range
+  remediation: Resign the request with a new signature and retry.
+- code: 41005
+  status: 403
+  title: Invalid domain
+  remediation: >-
+    Verify the domain used to sign the request is correct. For Data API requests sent
+    from the browser, the signing domain must match the browser's domain.
+- code: 41006
+  status: 400
+  title: Expired parameter must be a GMT date of format YYYYMMDD-HHMM
+  remediation: Verify the expires parameter used to sign the request is in YYYYMMDD-HHMM format.
+- code: 41007
+  status: 400
+  title: Request after the expire timestamp
+  remediation: Resign the request with a new expires parameter and retry.
+- code: 41008
+  status: 403
+  title: Service is disabled
+  remediation: Verify that the account details are correct or contact support.
+- code: 41009
+  status: 403
+  title: Consumer exists but is no longer active
+  remediation: Verify that the account details are correct or contact support.
+- code: 42000
+  status: 429
+  title: Too many requests
+  remediation: Reduce the number of requests. See rate-limits/learnosity-rate-limits.yml.
+- code: 42001
+  status: 410
+  title: The endpoint is no longer available
+  remediation: Browse the other endpoints for a suitable alternative.
+- code: 43000
+  status: 400
+  title: Requested version is lower than consumer minimum
+  remediation: Specify a newer version in your endpoint URL.
+- code: 44000
+  status: 400
+  title: Unrecognised dataset_type
+  remediation: Verify the dataset_type specified in your request.
+- code: 50000
+  status: 400
+  title: Report Dataset is missing some required data
+  remediation: Upload the required dataset files before commencing dataset generation.
+- code: 50100
+  status: 500
+  title: An error occurred
+  remediation: An internal error has occurred. It has been logged and Learnosity is probably already looking into it.
+per_api_troubleshooting:
+- api: Items API
+  url: https://help.learnosity.com/hc/en-us/articles/16458090530845-troubleshooting-Items-API
+- api: Assess API
+  url: https://help.learnosity.com/hc/en-us/articles/16458105143837-troubleshooting-Assess-API
+- api: Questions API
+  url: https://help.learnosity.com/hc/en-us/articles/16458083654173-troubleshooting-Questions-API
+- api: Author API
+  url: https://help.learnosity.com/hc/en-us/articles/16458061457565-troubleshooting-Author-API
+- api: Question Editor API
+  url: https://help.learnosity.com/hc/en-us/articles/16458083226013-troubleshooting-Question-Editor-API
+- api: Reports API
+  url: https://help.learnosity.com/hc/en-us/articles/16458078603037-troubleshooting-Reports-API
+- api: Annotations API
+  url: https://help.learnosity.com/hc/en-us/articles/16458080297629-troubleshooting-Annotations-API

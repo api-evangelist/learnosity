@@ -1,0 +1,93 @@
+generated: '2026-07-19'
+method: derived
+status: candidate
+source: >-
+  Derived from the documented Learnosity Data API endpoint families
+  (https://help.learnosity.com/hc/en-us/articles/16458081309213-endpoints-Data-API and the
+  per-endpoint articles). No OpenAPI is published, so tools are mapped from the prose
+  endpoint reference.
+published_server: none
+search_notes: >-
+  No official hosted or remote Learnosity MCP server was found on the Learnosity site, the
+  Learnosity GitHub organisation, npm, or the public MCP registries as of this probe.
+  This is a candidate design only - it is not a Learnosity product claim.
+server:
+  name: learnosity
+  transport: http
+  url: null
+  auth: >-
+    Requires a Learnosity consumer_key/consumer_secret pair; every call must be signed
+    server-side with HMAC-SHA256 (see authentication/learnosity-authentication.yml). An MCP
+    server must hold the consumer_secret and never expose it to the model.
+  base_url_template: https://data{-region}.learnosity.com/{LTS_VERSION}/{endpoint}
+tools:
+- name: get_items
+  description: Retrieve Items from the Item bank, optionally filtered by status, tags or workflow.
+  source_endpoint: POST /{LTS_VERSION}/itembank/items (action=get)
+  consequence: read
+- name: set_items
+  description: Create or replace Items in the Item bank.
+  source_endpoint: POST /{LTS_VERSION}/itembank/items (action=set)
+  consequence: write
+- name: get_questions
+  description: Retrieve Questions from the Item bank.
+  source_endpoint: POST /{LTS_VERSION}/itembank/questions (action=get)
+  consequence: read
+- name: get_activities
+  description: Retrieve Activities from the Item bank.
+  source_endpoint: POST /{LTS_VERSION}/itembank/activities (action=get)
+  consequence: read
+- name: get_tags
+  description: Retrieve Tags and Tag types from the Item bank.
+  source_endpoint: POST /{LTS_VERSION}/itembank/tags (action=get)
+  consequence: read
+- name: get_pools
+  description: Retrieve Item pools.
+  source_endpoint: POST /{LTS_VERSION}/itembank/pools (action=get)
+  consequence: read
+- name: get_sessions_responses
+  description: Retrieve learner responses for one or more sessions, paged with the `next` token.
+  source_endpoint: POST /{LTS_VERSION}/sessions/responses (action=get)
+  consequence: read
+- name: get_sessions_statuses
+  description: Retrieve the status of learner sessions.
+  source_endpoint: POST /{LTS_VERSION}/sessions/statuses (action=get)
+  consequence: read
+- name: get_sessions_scores
+  description: Retrieve session-level scores.
+  source_endpoint: POST /{LTS_VERSION}/sessions/scores (action=get)
+  consequence: read
+- name: get_sessions_subscores
+  description: Retrieve subscores broken out by tag or section.
+  source_endpoint: POST /{LTS_VERSION}/sessions/subscores (action=get)
+  consequence: read
+- name: get_session_metadata
+  description: Retrieve caller-supplied metadata attached to sessions.
+  source_endpoint: POST /{LTS_VERSION}/sessions/metadata (action=get)
+  consequence: read
+- name: score_responses
+  description: Compute scores from raw response data without persisting a session.
+  source_endpoint: POST /{LTS_VERSION}/scoring (action=get)
+  consequence: read
+- name: get_jobs
+  description: Check the status and results of a long-running data processing job.
+  source_endpoint: POST /{LTS_VERSION}/jobs (action=get)
+  consequence: read
+- name: get_reports
+  description: Retrieve aggregate report output.
+  source_endpoint: POST /{LTS_VERSION}/reports (action=get)
+  consequence: read
+- name: get_datasets
+  description: Retrieve reporting dataset definitions and generation status.
+  source_endpoint: POST /{LTS_VERSION}/reports/datasets (action=get)
+  consequence: read
+guardrails:
+- Never place learner names or other PII in `user_id` or any request field.
+- Pin an explicit LTS version in the URL; never call `developer` or `latest-lts` from an agent.
+- >-
+  Respect the per-endpoint 5-second rate windows in rate-limits/learnosity-rate-limits.yml;
+  back off a full 5 seconds on HTTP 429 / meta.code 42000.
+- >-
+  Treat HTTP 200 with a false meta.status as a failure; read meta.code against
+  errors/learnosity-error-codes.yml.
+- Route Item bank writes to the Oregon (data-or) endpoint and reads to the consumer's own region.

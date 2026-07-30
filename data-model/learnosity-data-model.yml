@@ -1,0 +1,218 @@
+generated: '2026-07-19'
+method: derived
+source: >-
+  Derived from the Learnosity Data API endpoint reference
+  (https://help.learnosity.com/hc/en-us/categories/16266193425053-Developer-Documentation)
+  and the Glossary of Learnosity and Industry Terms. No OpenAPI is published, so entities
+  and relationships are read from the documented endpoint families and request/response
+  parameters rather than from schema $refs.
+domains:
+- name: Item bank
+  description: Authored assessment content - the reusable library.
+  endpoint_root: /itembank
+- name: Sessions
+  description: Learner attempts, responses and scores.
+  endpoint_root: /sessions
+- name: Scoring
+  description: Stateless score computation from raw response data.
+  endpoint_root: /scoring
+- name: Jobs
+  description: Status and results of long-running data processing jobs.
+  endpoint_root: /jobs
+- name: Reports
+  description: Aggregate reporting, datasets and data-warehousing tasks.
+  endpoint_root: /reports
+- name: Consumers
+  description: API consumer configuration and management.
+  endpoint_root: /consumers
+- name: Assets
+  description: Secure retrieval of media captured in learner responses.
+  endpoint_root: /assets
+entities:
+- name: Consumer
+  domain: Consumers
+  key: consumer_key
+  description: An API account, scoped to an organisation and a region, owning one Item bank.
+- name: Organisation
+  key: org_id
+  description: Tenant that a consumer belongs to; drives access rights.
+- name: ItemBank
+  domain: Item bank
+  description: The content library owned by a consumer.
+- name: Item
+  domain: Item bank
+  key: reference
+  description: A unit of assessment content composed of Questions and Features.
+- name: Question
+  domain: Item bank
+  key: reference
+  description: A single scorable prompt of a given Question type.
+- name: Feature
+  domain: Item bank
+  key: reference
+  description: A non-scorable content element (stimulus, calculator, video, and so on).
+- name: Activity
+  domain: Item bank
+  key: reference
+  description: An ordered collection of Items delivered as one assessment.
+- name: Pool
+  domain: Item bank
+  description: A grouping of Items used for selection within an Activity.
+- name: Template
+  domain: Item bank
+  description: Reusable Activity configuration.
+- name: Tag
+  domain: Item bank
+  key: [type, name]
+  description: Metadata label applied to Items and Activities.
+- name: TagHierarchy
+  domain: Item bank
+  description: Ordered hierarchy over Tag types.
+- name: Workflow
+  domain: Item bank
+  key: reference
+  description: Authoring workflow with named states applied to Items.
+- name: Status
+  domain: Item bank
+  description: Publication state of content (published, unpublished, archived).
+- name: Session
+  domain: Sessions
+  key: session_id
+  description: One learner's attempt at one Activity. Caller-generated UUID.
+- name: Response
+  domain: Sessions
+  description: A learner's answer to one Question within a Session.
+- name: Score
+  domain: Sessions
+  description: The score for a Session or an individual Response.
+- name: Subscore
+  domain: Sessions
+  description: Score broken out by a tag/section grouping.
+- name: SessionAdjustment
+  domain: Sessions
+  description: Adjustment points applied to a Session or Response after scoring.
+- name: SessionMetadata
+  domain: Sessions
+  description: Caller-supplied metadata attached to a Session.
+- name: ResponseFeedback
+  domain: Sessions
+  description: Feedback attached to a learner response (including Feedback Aide output).
+- name: FailedSubmission
+  domain: Sessions
+  description: Submissions that could not be persisted, retained for recovery.
+- name: Job
+  domain: Jobs
+  description: Long-running processing job with status and results.
+- name: Report
+  domain: Reports
+  description: An aggregate report definition/result.
+- name: Dataset
+  domain: Reports
+  key: dataset_type
+  description: Data-warehouse export set assembled from uploaded files.
+- name: AdaptiveReport
+  domain: Reports
+  description: Reporting over adaptive assessment sessions.
+- name: Asset
+  domain: Assets
+  description: Media file captured as part of a learner response.
+- name: User
+  key: user_id
+  description: >-
+    Anonymized learner identifier (<=50 chars, no PII, UUID recommended). Learnosity stores
+    no learner names.
+relationships:
+- from: Consumer
+  to: ItemBank
+  type: has_one
+- from: Consumer
+  to: Organisation
+  type: belongs_to
+  via: org_id
+- from: ItemBank
+  to: Item
+  type: has_many
+- from: ItemBank
+  to: Activity
+  type: has_many
+- from: Item
+  to: Question
+  type: has_many
+- from: Item
+  to: Feature
+  type: has_many
+- from: Item
+  to: Tag
+  type: has_many
+  via: item-tags
+- from: Item
+  to: Workflow
+  type: belongs_to
+  via: authoring_workflow.reference
+- from: Activity
+  to: Item
+  type: has_many
+  constraint: Items within an Activity must be unique (error 30003)
+- from: Activity
+  to: Tag
+  type: has_many
+  via: activity-tags
+- from: Activity
+  to: Template
+  type: belongs_to
+  via: activity_template_id
+- from: Pool
+  to: Item
+  type: has_many
+- from: TagHierarchy
+  to: Tag
+  type: has_many
+- from: Session
+  to: Activity
+  type: belongs_to
+  via: activity_id
+- from: Session
+  to: User
+  type: belongs_to
+  via: user_id
+- from: Session
+  to: Response
+  type: has_many
+- from: Session
+  to: Score
+  type: has_one
+- from: Session
+  to: Subscore
+  type: has_many
+- from: Session
+  to: SessionMetadata
+  type: has_one
+- from: Session
+  to: SessionAdjustment
+  type: has_many
+- from: Response
+  to: Question
+  type: belongs_to
+  via: question reference
+- from: Response
+  to: ResponseFeedback
+  type: has_many
+- from: Response
+  to: Asset
+  type: has_many
+- from: Report
+  to: Session
+  type: has_many
+- from: Dataset
+  to: Report
+  type: has_many
+- from: Job
+  to: ItemBank
+  type: references
+  via: long-running import/export operations
+identifier_conventions:
+  style: caller-supplied string references, not provider-issued prefixed ids
+  notes: >-
+    Learnosity content is addressed by an integrator-chosen `reference` string per Item,
+    Question, Feature and Activity; sessions and users are caller-generated UUIDs. There is
+    no id-prefix scheme (no `it_`/`sess_` style prefixes).

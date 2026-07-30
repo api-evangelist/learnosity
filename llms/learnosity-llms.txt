@@ -1,0 +1,73 @@
+# Learnosity: The leader in AI for assessment
+
+
+> Learnosity is the global leader in AI-powered assessment infrastructure, purpose-built for organizations that need to deliver sophisticated online assessments at scale. Trusted by 150+ industry leaders--including Pearson, Houghton Mifflin Harcourt, and Google--Learnosity enables product teams to get to market faster, deliver best-in-class assessment capabilities, and access continuous innovation without the tech debt.
+
+
+Markets served: K-12, Higher Education, Language Learning, Adult & Vocational, Corporate Training, and Educational Publishers.
+
+
+Important note: Learnosity is a modular set of APIs and developer tools designed to be embedded into existing products--it's not a readymade platform. For organizations seeking an out-of-the-box assessment solution, please refer to our platform, Questionmark.
+
+
+Generated for LLM consumption. Use product pages for high-level capability summaries and the Help Center for technical implementation details.
+
+
+## Pages
+
+- [homepage](https://learnosity.com/)
+
+- [Learnosity Author](https://learnosity.com/products/author/)
+
+- [Learnosity Assessment](https://learnosity.com/products/assessments/)
+
+- [Learnosity Questions](https://learnosity.com/products/questions/)
+
+- [Math Assessment Engine](https://learnosity.com/math-assessment/)
+
+- [AI-enriched assessment](https://learnosity.com/ai-enriched-assessment/)
+
+- [Author Aide](https://learnosity.com/products/ai-assisted-authoring/)
+
+- [Feedback Aide](https://learnosity.com/ai-assisted-scoring-feedback/)
+
+- [Item Bank Health Check](https://learnosity.com/products/item-bank-health-check/)
+
+- [Accessibility & WCAG Compliance](https://learnosity.com/platform/accessibility/)
+
+
+
+## Use Cases
+
+- [Early Learning & K-12](https://learnosity.com/use-cases/early-learning-k12/)
+
+- [Higher Education](https://learnosity.com/use-cases/higher-education/)
+
+- [Language Learning](https://learnosity.com/use-cases/language-learning/)
+
+- [Adult & Vocational Learning](https://learnosity.com/use-cases/adult-vocational-learning/)
+
+- [Corporate Training](https://learnosity.com/use-cases/corporate-training/)
+
+- [Educational Publishers](https://learnosity.com/use-cases/educational-publishers/)
+
+- [Case Studies](https://learnosity.com/use-cases/case-studies/)
+
+
+
+## Developer Resources 
+
+- [Developer Help Center](https://help.learnosity.com/)
+
+- [API Reference Guide](https://help.learnosity.com/hc/en-us/categories/16266193425053-Developer-Documentation)
+
+- [Learnosity Demos & Code Examples](https://demos.learnosity.com/)
+
+- [Author Aide Help Center](https://help.learnosity.com/hc/en-us/categories/22502878448157-Author-Aide)
+
+- [Feedback Aide Help Center](https://help.learnosity.com/hc/en-us/categories/22502911016989-Feedback-Aide)
+
+
+## Optional
+
+- [Sitemap](https://learnosity.com/sitemap.xml)
