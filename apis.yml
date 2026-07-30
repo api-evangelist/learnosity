@@ -1,23 +1,277 @@
 aid: learnosity
 name: Learnosity
-description: Learnosity is a company surfaced as a portfolio company of battery-ventures and added to
-  the API Evangelist network as a stub for enrichment. This profile is a lead awaiting the enrichment
-  pipeline.
+description: >-
+  Learnosity is an Irish-founded assessment infrastructure company whose APIs are embedded
+  into other companies' learning products rather than sold as a finished platform. The
+  surface is split in two: a family of versioned client-side JavaScript APIs - Items,
+  Assess, Questions, Question Editor, Author, Author Aide, Annotations, Events, Reports,
+  Grading, Rubric Editor and Feedback Aide - that render assessment, authoring, grading and
+  reporting experiences inside a host application, and a server-side Data API for Item bank
+  content, learner sessions, responses, scoring, jobs, reports and consumer administration.
+  Learnosity is explicitly not a REST API: every Data API call is an HTTP POST whose
+  operation is chosen by an `action` parameter, and every request across every API carries
+  an HMAC-SHA256 signed `security` object generated server-side by one of six official
+  SDKs. Versions ship on a dated Long Term Support train (vYYYY.X.LTS) pinned in the URL,
+  with regional endpoints in Virginia, Dublin, Sydney, California and Oregon.
+accessModel:
+  pricing: unknown
+  onboarding: unknown
+  trial: false
+  try_now: false
+  public: false
+  label: Unknown
+  confidence: low
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://learnosity.com/images/learnosity_logo.svg
 url: https://raw.githubusercontent.com/api-evangelist/learnosity/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
 x-backed-by:
 - battery-ventures
-x-tier: stub
-x-tier-reason: portfolio-lead
+x-tier: enriched
+x-tier-reason: enrichment-pipeline
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-19'
 tags:
+- Education
+- Assessment
+- EdTech
+- Learning
+- Analytics
+- Content Authoring
+- Artificial Intelligence
+- Accessibility
 - Company
-apis: []
+apis:
+- aid: learnosity:data-api
+  name: Learnosity Data API
+  description: >-
+    Server-side JSON API for the Learnosity platform. Endpoint families cover Item bank
+    content (Items, Questions, Features, Activities, Tags, Pools, Templates, Workflows),
+    learner sessions and responses, stateless scoring, long-running jobs, aggregate
+    reports and datasets, consumer administration, and secure asset retrieval. All calls
+    are POST with an `action` of get, set or update, addressed as
+    /{LTS_VERSION}/{endpoint}, and must be signed with the Learnosity SDK.
+  humanURL: https://help.learnosity.com/hc/en-us/articles/16458081309213-endpoints-Data-API
+  baseURL: https://data.learnosity.com
+  tags:
+  - Data
+  - Assessment
+  - Reporting
+  properties:
+  - type: GettingStarted
+    url: https://help.learnosity.com/hc/en-us/articles/360000758637-Getting-Started-With-the-Data-API
+  - type: Authentication
+    url: https://help.learnosity.com/hc/en-us/articles/360000754738-Security-and-Authentication
+  - type: RateLimits
+    url: rate-limits/learnosity-rate-limits.yml
+  - type: ErrorCatalog
+    url: errors/learnosity-error-codes.yml
+- aid: learnosity:items-api
+  name: Learnosity Items API
+  description: >-
+    Client-side JavaScript API that renders and runs an assessment from an Activity in the
+    Item bank, handling navigation, save and resume, response storage and submission.
+  humanURL: https://help.learnosity.com/hc/en-us/categories/16534045857949-Items-API-Initialization-Options
+  baseURL: https://items.learnosity.com
+  tags:
+  - Assessment
+  - Delivery
+- aid: learnosity:assess-api
+  name: Learnosity Assess API
+  description: >-
+    The assessment player layer used by Items API in assess rendering mode, drivable
+    directly for bespoke player experiences.
+  humanURL: https://help.learnosity.com/hc/en-us/categories/16534105833373-Assess-API-Initialization-Options
+  baseURL: https://assess.learnosity.com
+  tags:
+  - Assessment
+- aid: learnosity:questions-api
+  name: Learnosity Questions API
+  description: >-
+    Renders individual Questions and Features inline without the surrounding assessment
+    player - the lowest-level Learnosity rendering component.
+  humanURL: https://help.learnosity.com/hc/en-us/categories/16534061467933-Questions-API-Initialization-Options
+  baseURL: https://questions.learnosity.com
+  tags:
+  - Questions
+  - Assessment
+- aid: learnosity:author-api
+  name: Learnosity Author API
+  description: >-
+    Full embeddable authoring environment for browsing, creating and editing Items,
+    Questions, Features and Activities in the Item bank.
+  humanURL: https://help.learnosity.com/hc/en-us/categories/16534074620189-Author-API-Initialization-Options
+  baseURL: https://authorapi.learnosity.com
+  tags:
+  - Authoring
+  - Content
+- aid: learnosity:question-editor-api
+  name: Learnosity Question Editor API
+  description: >-
+    The single-Question editing widget, embeddable on its own inside a custom authoring UI.
+  humanURL: https://help.learnosity.com/hc/en-us/categories/16534061255965-Question-Editor-API-Initialization-Options
+  baseURL: https://questioneditor.learnosity.com
+  tags:
+  - Authoring
+- aid: learnosity:reports-api
+  name: Learnosity Reports API
+  description: >-
+    Renders prebuilt learner and aggregate reports - individual reports, live progress and
+    learner-centric reports - into the host application.
+  humanURL: https://help.learnosity.com/hc/en-us/categories/16534075019677-Reports-API-Initialization-Options
+  baseURL: https://reports.learnosity.com
+  tags:
+  - Analytics
+  - Reporting
+- aid: learnosity:events-api
+  name: Learnosity Events API
+  description: >-
+    Real-time client-side event channel used for live progress monitoring across in-flight
+    assessment sessions.
+  humanURL: https://help.learnosity.com/hc/en-us/categories/16534106856221-Events-API-Initialization-Options
+  baseURL: https://events.learnosity.com
+  tags:
+  - Events
+  - Realtime
+- aid: learnosity:annotations-api
+  name: Learnosity Annotations API
+  description: >-
+    Adds annotation and markup capability - highlighting, notes - over assessment content.
+  humanURL: https://help.learnosity.com/hc/en-us/categories/16534076465693-Annotations-API-Initialization-Options
+  baseURL: https://annotations.learnosity.com
+  tags:
+  - Annotations
+  - Assessment
+- aid: learnosity:grading-api
+  name: Learnosity Grading API
+  description: Embeddable manual grading UI for scoring learner responses.
+  humanURL: https://help.learnosity.com/hc/en-us/categories/19985132524957-Grading-API-Initialization-Options
+  baseURL: https://grading.learnosity.com
+  tags:
+  - Grading
+  - Scoring
+  properties:
+  - type: GettingStarted
+    url: https://help.learnosity.com/hc/en-us/articles/25283285367453-Getting-started-with-the-Grading-API
+- aid: learnosity:author-aide-api
+  name: Learnosity Author Aide API
+  description: >-
+    AI-assisted authoring component for generating and improving assessment content inside
+    the host product.
+  humanURL: https://help.learnosity.com/hc/en-us/categories/19776607605789-Author-Aide-API-Initialization-Options
+  baseURL: https://authorapi.learnosity.com
+  tags:
+  - Artificial Intelligence
+  - Authoring
+  properties:
+  - type: GettingStarted
+    url: https://help.learnosity.com/hc/en-us/articles/19751636225181-Getting-started-with-the-Author-Aide-API
+- aid: learnosity:feedback-aide
+  name: Learnosity Feedback Aide
+  description: >-
+    Embeddable AI scoring and feedback surface for open-response work, exposed through
+    feedbackSession and feedbackSessionUI configuration.
+  humanURL: https://help.learnosity.com/hc/en-us/categories/22502911016989-Feedback-Aide
+  baseURL: https://grading.learnosity.com
+  tags:
+  - Artificial Intelligence
+  - Scoring
+common:
+- type: Portal
+  url: https://help.learnosity.com/hc/en-us
+- type: DeveloperPortal
+  url: https://help.learnosity.com/hc/en-us
+- type: Documentation
+  url: https://help.learnosity.com/hc/en-us/categories/16266193425053-Developer-Documentation
+- type: APIReference
+  url: https://help.learnosity.com/hc/en-us/categories/16266193425053-Developer-Documentation
+- type: GettingStarted
+  url: https://help.learnosity.com/hc/en-us/articles/360000758637-Getting-Started-With-the-Data-API
+- type: Support
+  url: https://learnosity.com/platform/support/
+- type: HelpCenter
+  url: https://help.learnosity.com/hc/en-us
+- type: Blog
+  url: https://learnosity.com/edtech-blog/
+- type: BlogRSS
+  url: https://learnosity.com/edtech-blog/feed/
+- type: GitHubOrganization
+  url: https://github.com/Learnosity
+- type: Pricing
+  url: https://learnosity.com/licenses/
+- type: SignUp
+  url: https://learnosity.com/contact-sales/
+- type: Login
+  url: https://console.learnosity.com/login
+- type: TermsOfService
+  url: https://learnosity.com/terms-of-use/
+- type: PrivacyPolicy
+  url: https://learnosity.com/privacy-policy/
+- type: Website
+  url: https://learnosity.com/
+- type: Partners
+  url: https://learnosity.com/company/partners/
+- type: Demos
+  url: https://demos.learnosity.com/
+- type: StatusPage
+  url: https://status.learnosity.com
+- type: Deprecation
+  url: https://help.learnosity.com/hc/en-us/articles/360001268538-Release-Cadence-and-Version-Lifecycle
+- type: ChangeLog
+  url: https://help.learnosity.com/hc/en-us/articles/19629981258653-Developer-Release-Logs
+- type: ChangeLog
+  name: Learnosity changelog artifact
+  url: changelog/learnosity-changelog.yml
+- type: Lifecycle
+  url: lifecycle/learnosity-lifecycle.yml
+- type: Authentication
+  url: authentication/learnosity-authentication.yml
+- type: Conventions
+  url: conventions/learnosity-conventions.yml
+- type: ErrorCatalog
+  url: errors/learnosity-error-codes.yml
+- type: RateLimits
+  url: rate-limits/learnosity-rate-limits.yml
+- type: Packages
+  url: packages/learnosity-packages.yml
+- type: SDKs
+  url: packages/learnosity-packages.yml
+- type: Sandbox
+  url: sandbox/learnosity-sandbox.yml
+- type: Components
+  url: components/learnosity-components.yml
+- type: DataModel
+  url: data-model/learnosity-data-model.yml
+- type: Conformance
+  url: conformance/learnosity-conformance.yml
+- type: Compliance
+  url: https://learnosity.com/platform/security/
+- type: TrustCenter
+  url: security/learnosity-trust-center.yml
+- type: Security
+  url: https://learnosity.com/product-security-policy/
+- type: VulnerabilityDisclosure
+  url: security/learnosity-vulnerability-disclosure.yml
+- type: DomainSecurity
+  url: security/learnosity-domain-security.yml
+- type: WellKnown
+  url: well-known/learnosity-well-known.yml
+- type: LLMsTxt
+  url: llms/learnosity-llms.txt
+- type: MCPServer
+  url: mcp/learnosity-mcp.yml
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
+x-enrichment:
+  date: '2026-07-19'
+  status: backfilled
+  pass: local-v1
+  note: backfilled from .gitignore signal + verified work evidence
