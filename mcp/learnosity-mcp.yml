@@ -1,24 +1,20 @@
 generated: '2026-07-19'
 method: derived
 status: candidate
-source: >-
-  Derived from the documented Learnosity Data API endpoint families
-  (https://help.learnosity.com/hc/en-us/articles/16458081309213-endpoints-Data-API and the
-  per-endpoint articles). No OpenAPI is published, so tools are mapped from the prose
-  endpoint reference.
+source: Derived from the documented Learnosity Data API endpoint families (https://help.learnosity.com/hc/en-us/articles/16458081309213-endpoints-Data-API
+  and the per-endpoint articles). No OpenAPI is published, so tools are mapped from the prose endpoint
+  reference.
 published_server: none
-search_notes: >-
-  No official hosted or remote Learnosity MCP server was found on the Learnosity site, the
-  Learnosity GitHub organisation, npm, or the public MCP registries as of this probe.
-  This is a candidate design only - it is not a Learnosity product claim.
+search_notes: No official hosted or remote Learnosity MCP server was found on the Learnosity site, the
+  Learnosity GitHub organisation, npm, or the public MCP registries as of this probe. This is a candidate
+  design only - it is not a Learnosity product claim.
 server:
   name: learnosity
   transport: http
   url: null
-  auth: >-
-    Requires a Learnosity consumer_key/consumer_secret pair; every call must be signed
-    server-side with HMAC-SHA256 (see authentication/learnosity-authentication.yml). An MCP
-    server must hold the consumer_secret and never expose it to the model.
+  auth: Requires a Learnosity consumer_key/consumer_secret pair; every call must be signed server-side
+    with HMAC-SHA256 (see authentication/learnosity-authentication.yml). An MCP server must hold the consumer_secret
+    and never expose it to the model.
   base_url_template: https://data{-region}.learnosity.com/{LTS_VERSION}/{endpoint}
 tools:
 - name: get_items
@@ -84,10 +80,13 @@ tools:
 guardrails:
 - Never place learner names or other PII in `user_id` or any request field.
 - Pin an explicit LTS version in the URL; never call `developer` or `latest-lts` from an agent.
-- >-
-  Respect the per-endpoint 5-second rate windows in rate-limits/learnosity-rate-limits.yml;
-  back off a full 5 seconds on HTTP 429 / meta.code 42000.
-- >-
-  Treat HTTP 200 with a false meta.status as a failure; read meta.code against
-  errors/learnosity-error-codes.yml.
+- Respect the per-endpoint 5-second rate windows in rate-limits/learnosity-rate-limits.yml; back off a
+  full 5 seconds on HTTP 429 / meta.code 42000.
+- Treat HTTP 200 with a false meta.status as a failure; read meta.code against errors/learnosity-error-codes.yml.
 - Route Item bank writes to the Oregon (data-or) endpoint and reads to the consumer's own region.
+deployment:
+  mode: none
+  verified: derived
+  tools: 15
+  checked: '2026-08-12'
+  source: catalog MCP census
