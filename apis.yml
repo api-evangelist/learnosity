@@ -136,6 +136,9 @@ apis:
   humanURL: https://help.learnosity.com/hc/en-us/categories/16534106856221-Events-API-Initialization-Options
   baseURL: https://events.learnosity.com
   tags:
+  - Event
+  - Real-Time
+  tags_raw:
   - Events
   - Realtime
 - aid: learnosity:annotations-api
