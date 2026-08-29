@@ -13,6 +13,17 @@ description: >-
   an HMAC-SHA256 signed `security` object generated server-side by one of six official
   SDKs. Versions ship on a dated Long Term Support train (vYYYY.X.LTS) pinned in the URL,
   with regional endpoints in Virginia, Dublin, Sydney, California and Oregon.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: false
+  label: Hosted service · you call their endpoint
+  confidence: medium
+  source:
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: unknown
   onboarding: unknown
