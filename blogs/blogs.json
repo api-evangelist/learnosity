@@ -9,20 +9,20 @@
       "method": "none"
     },
     {
+      "source": "https://learnosity.com/edtech-blog/",
+      "feed_url": "https://learnosity.com/edtech-blog/blog/feed/",
+      "title": "",
+      "saved": 0,
+      "method": "discovered"
+    },
+    {
       "source": "https://learnosity.com/edtech-blog/feed/",
       "feed_url": "https://learnosity.com/edtech-blog/feed/",
       "title": "",
       "saved": 0,
       "method": "feed"
-    },
-    {
-      "source": "https://learnosity.com/edtech-blog/",
-      "feed_url": "https://learnosity.com/edtech-blog/feed/",
-      "title": "",
-      "saved": 0,
-      "method": "discovered"
     }
   ],
   "post_count": 0,
-  "fetched": "2026-08-30T22:33:40Z"
+  "fetched": "2026-09-06T19:17:18Z"
 }
