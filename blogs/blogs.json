@@ -16,6 +16,13 @@
       "method": "discovered"
     },
     {
+      "source": "https://learnosity.com/edtech-blog/blog/feed/",
+      "feed_url": "https://learnosity.com/edtech-blog/blog/feed/",
+      "title": "",
+      "saved": 0,
+      "method": "feed"
+    },
+    {
       "source": "https://learnosity.com/edtech-blog/feed/",
       "feed_url": "https://learnosity.com/edtech-blog/feed/",
       "title": "",
@@ -24,5 +31,5 @@
     }
   ],
   "post_count": 0,
-  "fetched": "2026-09-06T19:17:18Z"
+  "fetched": "2026-09-13T13:00:00Z"
 }
