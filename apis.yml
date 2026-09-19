@@ -159,6 +159,9 @@ apis:
   humanURL: https://help.learnosity.com/hc/en-us/categories/16534076465693-Annotations-API-Initialization-Options
   baseURL: https://annotations.learnosity.com
   tags:
+  - Annotation
+  - Assessment
+  tags_raw:
   - Annotations
   - Assessment
 - aid: learnosity:grading-api
