@@ -46,7 +46,7 @@ x-tier: enriched
 x-tier-reason: enrichment-pipeline
 specificationVersion: '0.23'
 created: '2026-07-17'
-modified: '2026-07-19'
+modified: '2026-10-06'
 tags:
 - Education
 - Assessment
@@ -199,6 +199,8 @@ apis:
   - Artificial Intelligence
   - Scoring
 common:
+- url: https://learnosity.com/feed/
+  type: BlogRSS
 - type: Portal
   url: https://help.learnosity.com/hc/en-us
 - type: DeveloperPortal
