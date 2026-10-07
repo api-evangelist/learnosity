@@ -199,6 +199,8 @@ apis:
   - Artificial Intelligence
   - Scoring
 common:
+- type: Plans
+  url: plans/learnosity-plans-pricing.yml
 - url: https://learnosity.com/feed/
   type: BlogRSS
 - type: Portal
