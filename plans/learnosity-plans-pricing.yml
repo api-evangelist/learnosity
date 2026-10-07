@@ -1,0 +1,42 @@
+# Pricing transcribed from the provider's own page — see provenance. Numbers are quoted, not derived.
+generated: '2026-10-07'
+method: searched
+source: https://learnosity.com/company/licences/
+sources:
+- https://learnosity.com/company/licences/
+- https://learnosity.com/licenses/
+provenance:
+  tool: all/0-working/economics/harvest_pricing.py
+  run: 20261007T104522
+  grounding: every price_text was found verbatim in the fetched page text
+audience: developer-api
+pricing_basis: negotiated
+delivery:
+  delivery: managed
+  method: page
+  read: '2026-10-07'
+  managed_tier: Standard
+published: false
+note: No numeric price is published on the pricing page; Licences page describes three user-count tiers
+  (Standard/Scale/Enterprise) and support levels but shows no prices; quotes are calculated per customer
+  as an annual SaaS licence based on licensed end users. Only numbers shown are user thresholds, SLA uptime
+  percentages, and training hours.
+plan_count: 3
+plans:
+- name: Standard
+  price_text: Standard up to 100,000 users
+  period: none
+  unit: users
+  included_quota: Silver support
+- name: Scale
+  price_text: Scale between 100,000 & 500,000 users
+  period: none
+  unit: users
+  included_quota: Gold support
+- name: Enterprise
+  price_text: Enterprise more than 500,000 users
+  period: none
+  unit: users
+  included_quota: Platinum support
+rate_limit_statements:
+- Uptime guarantee in SLA 99.8% 99.9% 99.9%
