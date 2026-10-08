@@ -40,3 +40,34 @@ plans:
   included_quota: Platinum support
 rate_limit_statements:
 - Uptime guarantee in SLA 99.8% 99.9% 99.9%
+x-canonical:
+  generated: '2026-10-08'
+  vocabulary: all/0-working/economics/plans-canonical.yml
+  models: []
+  units:
+  - seat
+  plans:
+  - name: Standard
+    access: other
+    model: unstated
+    model_how: derived
+    units:
+    - seat
+    periods:
+    - none
+  - name: Scale
+    access: other
+    model: unstated
+    model_how: derived
+    units:
+    - seat
+    periods:
+    - none
+  - name: Enterprise
+    access: other
+    model: unstated
+    model_how: derived
+    units:
+    - seat
+    periods:
+    - none
