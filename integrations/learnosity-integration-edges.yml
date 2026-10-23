@@ -146,6 +146,54 @@ edges:
     status: Acquired by Leeds Equity …
   detected_by: sweep-vc-portfolios.py
   first_seen: '2026-10-21'
+- partner_name: Packagist
+  partner: packagist
+  partner_match: register
+  type: register
+  direction: provider-built
+  category: official SDK (PHP)
+  evidence: https://packagist.org/packages/learnosity/learnosity-demos
+  channel: package-registry
+  relationship: distribution-channel
+  contract_reference:
+    register: Packagist (public registry JSON)
+    spec_file: null
+    language: PHP
+    packages:
+    - name: learnosity/learnosity-demos
+      version: null
+      released: null
+      released_field: time
+      lapsed: false
+      page: https://packagist.org/packages/learnosity/learnosity-demos
+      repo_leg: github-org:learnosity
+      publisher_leg: org:learnosity
+      matched_by: github-org
+    - name: learnosity/learnosity-qti
+      version: v2.1.0
+      released: '2023-03-08'
+      released_field: time
+      lapsed: true
+      page: https://packagist.org/packages/learnosity/learnosity-qti
+      repo_leg: github-org:learnosity
+      publisher_leg: org:learnosity
+      matched_by: github-org
+    - name: learnosity/learnosity-sdk-php
+      version: v1.2.1
+      released: '2026-02-04'
+      released_field: time
+      lapsed: false
+      page: https://packagist.org/packages/learnosity/learnosity-sdk-php
+      repo_leg: github-org:learnosity
+      publisher_leg: org:learnosity
+      matched_by: github-org
+    current: true
+    signal_note: 'an official package on the registry: distribution, not an integration; lapsed = no release in
+      24 months'
+    detected_by: sweep-php-dart-elixir-package-registries.py
+    detected: '2026-10-22'
+  detected_by: sweep-php-dart-elixir-package-registries.py
+  first_seen: '2026-10-22'
 generated: '2026-10-18'
 method: searched
 source:
@@ -172,3 +220,6 @@ checked:
 - https://www.indexventures.com/companies/
 - https://www.sequoiacap.com/our-companies/
 - https://www.sequoiacap.com/sitemap.xml
+- https://hex.pm/api
+- https://packagist.org/packages
+- https://pub.dev/api
