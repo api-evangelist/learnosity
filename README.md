@@ -64,24 +64,131 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Learnosity is an assessment infrastructure company whose APIs are embedded into other
-companies' learning products rather than sold as a finished platform. The surface splits in
-two: a family of versioned client-side JavaScript APIs — Items, Assess, Questions, Question
-Editor, Author, Author Aide, Annotations, Events, Reports, Grading, Rubric Editor and
-Feedback Aide — that render assessment, authoring, grading and reporting experiences inside
-a host application, and a server-side Data API for Item bank content, learner sessions,
-responses, scoring, jobs, reports and consumer administration.
+Learnosity is an Irish-founded assessment infrastructure company whose APIs are embedded into other companies' learning products rather than sold as a finished platform. The surface is split in two: a family of versioned client-side JavaScript APIs - Items, Assess, Questions, Question Editor, Author, Author Aide, Annotations, Events, Reports, Grading, Rubric Editor and Feedback Aide - that render assessment, authoring, grading and reporting experiences inside a host application, and a server-side Data API for Item bank content, learner sessions, responses, scoring, jobs, reports and consumer administration. Learnosity is explicitly not a REST API: every Data API call is an HTTP POST whose operation is chosen by an `action` parameter, and every request across every API carries an HMAC-SHA256 signed `security` object generated server-side by one of six official SDKs. Versions ship on a dated Long Term Support train (vYYYY.X.LTS) pinned in the URL, with regional endpoints in Virginia, Dublin, Sydney, California and Oregon.
 
-Learnosity is explicitly not a REST API. Every Data API call is an HTTP POST whose operation
-is selected by an `action` parameter, and every request across every API carries an
-HMAC-SHA256 signed `security` object generated server-side by one of six official SDKs
-(Node.js, PHP, Python, ASP.NET, Java, Ruby). Versions ship on a dated Long Term Support
-train (`vYYYY.X.LTS`) pinned in the URL, with regional endpoints in Virginia, Dublin,
-Sydney, California and Oregon.
+**Areas:** Education · Assessment · EdTech · Learning · Analytics · Content Authoring · Artificial Intelligence · Accessibility · Company
 
-- Website: https://learnosity.com/
-- Developer documentation: https://help.learnosity.com/hc/en-us/categories/16266193425053-Developer-Documentation
-- GitHub: https://github.com/Learnosity
-- Status: https://status.learnosity.com
+## Learnosity on APIs.io
 
-Backed by: battery-ventures
+Everything profiled for Learnosity is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/learnosity/](https://apis.io/providers/learnosity/)** — or go straight to one of the APIs or properties below.
+
+### APIs (12)
+
+- [Learnosity Data API](https://apis.io/apis/learnosity/data-api/) — Server-side JSON API for the Learnosity platform. Endpoint families cover Item bank content (Items, Questions, Features, Activities, Tags, Pools, Templates,…
+- [Learnosity Items API](https://apis.io/apis/learnosity/items-api/) — Client-side JavaScript API that renders and runs an assessment from an Activity in the Item bank, handling navigation, save and resume, response storage and…
+- [Learnosity Assess API](https://apis.io/apis/learnosity/assess-api/) — The assessment player layer used by Items API in assess rendering mode, drivable directly for bespoke player experiences.
+- [Learnosity Questions API](https://apis.io/apis/learnosity/questions-api/) — Renders individual Questions and Features inline without the surrounding assessment player - the lowest-level Learnosity rendering component.
+- [Learnosity Author API](https://apis.io/apis/learnosity/author-api/) — Full embeddable authoring environment for browsing, creating and editing Items, Questions, Features and Activities in the Item bank.
+- [Learnosity Question Editor API](https://apis.io/apis/learnosity/question-editor-api/) — The single-Question editing widget, embeddable on its own inside a custom authoring UI.
+- [Learnosity Reports API](https://apis.io/apis/learnosity/reports-api/) — Renders prebuilt learner and aggregate reports - individual reports, live progress and learner-centric reports - into the host application.
+- [Learnosity Events API](https://apis.io/apis/learnosity/events-api/) — Real-time client-side event channel used for live progress monitoring across in-flight assessment sessions.
+- [Learnosity Annotations API](https://apis.io/apis/learnosity/annotations-api/) — Adds annotation and markup capability - highlighting, notes - over assessment content.
+- [Learnosity Grading API](https://apis.io/apis/learnosity/grading-api/) — Embeddable manual grading UI for scoring learner responses.
+- [Learnosity Author Aide API](https://apis.io/apis/learnosity/author-aide-api/) — AI-assisted authoring component for generating and improving assessment content inside the host product.
+- [Learnosity Feedback Aide](https://apis.io/apis/learnosity/feedback-aide/) — Embeddable AI scoring and feedback surface for open-response work, exposed through feedbackSession and feedbackSessionUI configuration.
+
+### Published properties
+
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
+
+#### MCP servers (1)
+
+Model Context Protocol servers that expose the API to agents.
+
+- [learnosity](https://apis.io/servers/learnosity/learnosity/)
+
+#### Security (4)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Learnosity Authentication](https://apis.io/security/learnosity/learnosity-authentication/)
+- [Learnosity Domain Security](https://apis.io/security/learnosity/learnosity-domain-security/)
+- [Learnosity Trust Center](https://apis.io/security/learnosity/learnosity-trust-center/)
+- [Learnosity Vulnerability Disclosure](https://apis.io/security/learnosity/learnosity-vulnerability-disclosure/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Learnosity Plans Pricing](https://apis.io/plans/learnosity/learnosity-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Learnosity Rate Limits](https://apis.io/rate-limits/learnosity/learnosity-rate-limits/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://learnosity.com/)
+- [Documentation](https://help.learnosity.com/hc/en-us/categories/16266193425053-Developer-Documentation)
+- [Getting started](https://help.learnosity.com/hc/en-us/articles/360000758637-Getting-Started-With-the-Data-API)
+- [API reference](https://help.learnosity.com/hc/en-us/categories/16266193425053-Developer-Documentation)
+- [Pricing](https://learnosity.com/licenses/)
+- [Sign up](https://learnosity.com/contact-sales/)
+- [Support](https://learnosity.com/platform/support/)
+- [Changelog](https://help.learnosity.com/hc/en-us/articles/19629981258653-Developer-Release-Logs)
+- [Blog](https://learnosity.com/edtech-blog/)
+- [Security](https://learnosity.com/product-security-policy/)
+- [Compliance](https://learnosity.com/platform/security/)
+- [Terms of service](https://learnosity.com/terms-of-use/)
+- [Privacy policy](https://learnosity.com/privacy-policy/)
+- [GitHub](https://github.com/Learnosity)
+- [Status](https://status.learnosity.com)
+
+## API Evangelist rating
+
+**Kin Score 57.5** — strong · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 78.6 |
+| Contract quality | 6.5 |
+| Contract governance | 18.2 |
+| Operational transparency | 84.2 |
+| Developer ergonomics | 71.4 |
+| Access clarity | 92.1 |
+
+**Agent readiness 9.2** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | — |
+| Agentic Access | — |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | documented (partial credit) |
+| OpenAPI Examples | documented (partial credit) |
+| Rate Limit Signal | documented (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+| Pagination Ratio | na |
+| Operation Distinctiveness | na |
+
+**Regulatory alignment 32.7** — Education & Research
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/learnosity/](https://apis.io/providers/learnosity/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Learnosity: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/learnosity/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
